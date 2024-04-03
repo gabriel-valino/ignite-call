@@ -44,14 +44,13 @@ export async function getGoogleOAuthToken(userId: string) {
       },
       data: {
         access_token,
-        expires_at: expiry_date? Math.floor(expiry_date / 1000) : null,
+        expires_at: expiry_date ? Math.floor(expiry_date / 1000) : null,
         id_token,
         refresh_token,
         scope,
         token_type,
       },
     })
-
 
     auth.setCredentials({
       access_token,

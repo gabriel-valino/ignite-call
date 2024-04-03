@@ -69,7 +69,7 @@ export default async function handle(
 
   const calendar = google.calendar({
     version: 'v3',
-    auth: await getGoogleOAuthToken(user.id)
+    auth: await getGoogleOAuthToken(user.id),
   })
 
   await calendar.events.insert({
@@ -79,22 +79,20 @@ export default async function handle(
       summary: `Ignite Call: ${name}`,
       description: observations,
       start: {
-        dateTime: schedulingDate.format()
+        dateTime: schedulingDate.format(),
       },
       end: {
-        dateTime: schedulingDate.add(1,'hour').format()
+        dateTime: schedulingDate.add(1, 'hour').format(),
       },
-      attendees: [
-        { email, displayName: name }
-      ],
+      attendees: [{ email, displayName: name }],
       conferenceData: {
         createRequest: {
           requestId: scheduling.id,
           conferenceSolutionKey: {
-            type: 'hangoutsMeet'
-          }
-        }
-      }
+            type: 'hangoutsMeet',
+          },
+        },
+      },
     },
   })
 
